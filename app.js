@@ -20,7 +20,7 @@ app.post('/inserir', (req, res) => {
     (async function inserirDados() {
         const doc = new GoogleSpreadSheet('1BjVQnZsan3PnRZK5HyThB1-UmnrpT8XuHA9Vgv7VGn0');
         await promisify(doc.useServiceAccountAuth)(creds);
-        const info = await promisify(doc.getInfo)()
+        const info = await promisify(doc.getInfo)();
         const sheet = info.worksheets[0];
         await promisify(sheet.addRow)({
             // Nome: req.body.Nome,
