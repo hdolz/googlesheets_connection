@@ -1,0 +1,34 @@
+O servidor REST está construido em Node, utilizando o framework Express, para facilitar
+a implementação de código, e abstração de funcionalidades para a criação de API's.
+Para a utilização do express, é necessário carregar o módulo 'express'.
+
+Para a conexão com a API da Planilha do Google, utiliza-se o módulo 'google-spreadsheet'.
+
+Utiliza-se, também, o objeto promisify, presente no módulo 'util', nativo do Node.
+Com ele é possível 'promissificar' funções que, normalmente, não retornam objetos
+do tipo Promise.
+
+É utilizado o módulo 'body-parser' para a conversão do corpo da requisição HTTP,
+de modo a facilitar a manipulação pela propriedade req.body
+
+O arquivo credenciais.json possui as credenciais de acesso de usuário na API da planilha.
+
+Após instanciar um objeto de serviço 'const app = express()', define-se uma constante
+para o número da porta a ser escutada pelo servidor 'const port = 5000'. Em seguida,
+é definida outra constante para o ID da planilha a ser acessada 'const SHEET_ID'
+
+Usamos, então, o método 'use' do objeto app para configurar o middleware do módulo
+body parser.
+
+É definido, por meio do método post, do objeto app, um endpoint para a inserção de dados
+na planilha '/inserir'. O processamento da inserção de dados é realizado no callback
+do método post, onde há uma função assíncrona que realiza procedimentos de validação
+de credenciais de usuário, recuperação de referência da planilha, e envio de dados 
+para a mesma.
+
+Ao fim, por meio do método listen, do objeto app, o serviço é 'levantado' e começa a 
+escutar requisições pela porta previamente definida.
+
+
+
+ID_PLANILHA = '1BjVQnZsan3PnRZK5HyThB1-UmnrpT8XuHA9Vgv7VGn0'
