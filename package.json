@@ -1,0 +1,16 @@
+{
+  "name": "backend_chatbot",
+  "version": "1.0.0",
+  "description": "backend basico para demonstracao de integracao de chatbot com API rest node com Google SpreadSheet API",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Henrique Dolzane",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "google-spreadsheet": "^2.0.8"
+  }
+}
