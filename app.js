@@ -18,23 +18,21 @@ app.get('/', (req, res) => {
 });
 
 app.post('/inserir', (req, res) => {
-    (async function inserirDados() {
-        const doc = new GoogleSpreadSheet(SHEET_ID);
-        await promisify(doc.useServiceAccountAuth)(creds);
-        const info = await promisify(doc.getInfo)();
-        const sheet = info.worksheets[0];
-        await promisify(sheet.addRow)({
-            // Nome: req.body.Nome,
-            // Area: req.body.Area,
-            // Curso: req.body.Curso
-            Nome: req.body.Nome,
-            Email: req.body.Email,
-            DtNasc: req.body.DtNasc,
-            Interesse: req.body.Interesse
-        });
-        res.send('Dados inseridos com sucesso!');
-    })()
+    inserirDados(req, res);
 });
+
+async function inserirDados(req, res) {
+    const doc = new GoogleSpreadSheet(SHEET_ID);
+    await promisify(doc.useServiceAccountAuth)(creds);
+    const info = await promisify(doc.getInfo)();
+    const sheet = info.worksheets[0];
+    await promisify(sheet.addRow)({
+        Nome: req.body.Nome,
+        Email: req.body.Email,
+        Interesse: req.body.Interesse
+    });
+    res.send('Dados inseridos com sucesso!');
+}
 
 app.listen(PORT, () => {
     console.log(`Servidor ouvindo na porta ${PORT}`);
